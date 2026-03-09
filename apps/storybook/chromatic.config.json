@@ -1,0 +1,8 @@
+{
+  "onlyChanged": true,
+  "exitOnceUploaded": false,
+  "projectId": "Project:69a1914cee031a546b3446cd",
+  "storybookBaseDir": "apps/storybook",
+  "zip": true,
+  "buildScriptName": "build"
+}

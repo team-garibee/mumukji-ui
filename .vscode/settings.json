@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+
+  "stylelint.validate": ["css", "scss"]
+}

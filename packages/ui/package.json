@@ -1,0 +1,74 @@
+{
+  "name": "@mumukji/ui",
+  "version": "0.0.0",
+  "description": "A React-based design system for Mumukji. Includes reusable UI components built with accessibility and scalability in mind.",
+  "private": false,
+  "author": "team-garibee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-garibee/mumukji-ui.git",
+    "directory": "packages/ui"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/index.css",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/index.css",
+    "./*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "ui",
+    "component-library",
+    "mumukji"
+  ],
+  "scripts": {
+    "watch": "rollup -cw",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && rollup -c && ([ -f dist/esm/index.css ] && mv dist/esm/index.css dist/index.css || true) && rm -rf dist/types",
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "@mumukji/icons": "workspace:*",
+    "@mumukji/tokens": "workspace:*",
+    "tslib": "^2.8.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rollup": "^4.59.0",
+    "rollup-plugin-dts": "^6.3.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.97.3"
+  }
+}

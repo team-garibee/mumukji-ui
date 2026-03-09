@@ -1,0 +1,34 @@
+ls:
+  # 모든 폴더는 kebab-case
+  .dir: kebabcase
+
+  # 기본 파일 규칙 (camelCase)
+  .ts: camelcase
+  .js: camelcase
+
+  # React 컴포넌트는 PascalCase
+  packages/ui:
+    .dir: kebabcase
+    .tsx: PascalCase
+
+  packages/icons:
+    .dir: kebabcase
+    .tsx: PascalCase
+
+ignore:
+  - node_modules
+  - '**/node_modules'
+  - dist
+  - build
+  - coverage
+  - .turbo
+  - '**/.turbo'
+  - .git
+  - .vscode
+  - .husky
+  - .storybook
+  - '**/.storybook'
+  - storybook-static
+  - '**/storybook-static'
+  - .github
+  - .changeset

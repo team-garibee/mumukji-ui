@@ -1,0 +1,50 @@
+{
+  "name": "@mumukji/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for Mumukji design system. Includes colors, typography, spacing, and other foundational styles.",
+  "private": false,
+  "author": "team-garibee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-garibee/mumukji-ui.git",
+    "directory": "packages/tokens"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "tokens",
+    "mumukji"
+  ],
+  "scripts": {
+    "watch": "rollup -cw",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && rollup -c",
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.59.0"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}

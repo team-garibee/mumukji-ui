@@ -1,0 +1,65 @@
+{
+  "name": "@mumukji/icons",
+  "version": "0.0.0",
+  "description": "React icon components for Mumukji design system.",
+  "private": false,
+  "author": "team-garibee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-garibee/mumukji-ui.git",
+    "directory": "packages/icons"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "icons",
+    "svg",
+    "mumukji"
+  ],
+  "scripts": {
+    "watch": "rollup -cw",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rollup": "^4.59.0",
+    "rollup-plugin-dts": "^6.3.0"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}

@@ -1,0 +1,56 @@
+name: "🧪 CI"
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Turbo
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ github.ref }}
+          restore-keys: |
+            turbo-${{ runner.os }}-
+      
+      - name: 🔎 LS-Lint
+        run: pnpm ls-lint
+      
+      - name: 🎨 Format Check
+        run: pnpm format:check  
+
+      - name: 🧹 Lint
+        run: pnpm turbo run lint
+
+      - name: 🧠 Typecheck
+        run: pnpm turbo run typecheck
+      
+      - name: 🏗 Build
+        run: pnpm turbo run build
+      
+      - name: ⚙️ Install Playwright browsers
+        run: pnpm --filter @mumukji/storybook exec playwright install --with-deps chromium
+      
+      - name: 🧪 Test
+        run: pnpm turbo run test

@@ -1,0 +1,46 @@
+name: "🧑‍⚖️ Release Ready"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  release-ready:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - run: git fetch origin dev:dev
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Detect package source changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            release:
+              - 'packages/**'
+              - '!packages/**/*.test.ts'
+              - '!packages/**/*.test.tsx'
+              - '!packages/**/*.stories.tsx'
+              - '!packages/**/*.md'
+              - '!packages/**/*.stories.mdx'
+              - '!packages/**/*.mdx'
+
+      - name: 📦 Require Changeset
+        if: steps.changes.outputs.release == 'true'
+        run: pnpm changeset status

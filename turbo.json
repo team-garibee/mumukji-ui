@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/turbo/schema.json",
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", "storybook-static/**"],
+      "dependsOn": ["^build"]
+    },
+
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+
+    "lint": {
+      "cache": true,
+      "outputs": []
+    },
+
+    "lint:fix": {
+      "cache": false,
+      "outputs": []
+    },
+
+    "test": {
+      "cache": false,
+      "outputs": []
+    },
+
+    "clean": {
+      "cache": false
+    }
+  }
+}

@@ -1,0 +1,38 @@
+# Node
+node_modules
+.pnpm
+.pnp.cjs
+
+# Build output
+dist
+build
+.next
+.out
+
+# Turbo
+.turbo
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Mac
+.DS_Store
+
+# Coverage
+coverage
+
+# TypeScript
+*.tsbuildinfo
+
+# storybook
+*.log
+*storybook.log
+storybook-static

@@ -1,0 +1,69 @@
+{
+  "name": "mumukji",
+  "private": true,
+  "author": "team-garibee",
+  "license": "MIT",
+  "description": "Mumukji design system monorepo.",
+  "packageManager": "pnpm@10.26.1",
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "dev": "turbo run dev",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "stylelint": "stylelint \"**/*.{css,scss}\"",
+    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+    "test": "turbo run test",
+    "test:storybook": "turbo run test --filter=@mumukji/storybook",
+    "chromatic": "turbo run chromatic --filter=@mumukji/storybook",
+    "ls-lint": "ls-lint",
+    "prepare": "husky",
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "pnpm exec eslint --fix",
+      "pnpm exec prettier --write"
+    ],
+    "**/*.{json,md,html,yml,yaml,mjs,cjs}": [
+      "pnpm exec prettier --write"
+    ],
+    "**/*.{scss,css}": [
+      "pnpm exec prettier --write",
+      "pnpm exec stylelint --fix --quiet"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@commitlint/cli": "^20.4.2",
+    "@eslint/js": "^9.39.3",
+    "@ls-lint/ls-lint": "^2.3.1",
+    "@types/node": "^25.3.0",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-storybook": "^10.2.12",
+    "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.4.0",
+    "stylelint-config-css-modules": "^4.6.0",
+    "stylelint-config-property-sort-order-smacss": "^11.1.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "turbo": "^2.8.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  }
+}

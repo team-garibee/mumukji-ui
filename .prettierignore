@@ -1,0 +1,28 @@
+# dependency
+node_modules
+
+# turborepo
+.turbo
+
+# build outputs
+dist
+build
+
+# test
+coverage
+
+# env
+.env
+.env.*.local
+
+# storybook
+.storybook-static
+
+# git
+.git
+.github
+
+# misc
+*.log
+.vscode
+pnpm-lock.yaml

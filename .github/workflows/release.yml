@@ -1,0 +1,60 @@
+name: "🚀 Release"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.1
+          run_install: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org/'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🚀 Create Release PR or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          version: pnpm version-packages
+          commit: "🚀 Release: 패키지 버전 업데이트"
+          title: "🚀 Release: 패키지 버전 업데이트"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📢 Discord Notification
+        if: steps.changesets.outputs.published == 'true'
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_RELEASE }}
+          username: "Release Bot - 머먹지"
+          avatar-url: "https://raw.githubusercontent.com/team-garibee/study/main/.github/assets/discord-avatar.png"
+          content: |
+            🚀 **머먹지 npm 배포 완료**
+
+            📦 Published Packages:
+            ${{ steps.changesets.outputs.publishedPackages }}
+
+            🔗 npm: https://www.npmjs.com/org/mumukji
