@@ -23,6 +23,7 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./*.svg": "./dist/svg/*.svg",
     "./*": {
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js",
