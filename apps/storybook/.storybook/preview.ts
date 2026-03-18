@@ -13,6 +13,12 @@ const preview: Preview = {
     a11y: {
       test: 'todo',
     },
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Introduction', '*'],
+      },
+    },
   },
   tags: ['autodocs'],
 };
