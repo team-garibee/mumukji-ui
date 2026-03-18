@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - run: git fetch origin dev:dev
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
         with:
           version: 10.26.1
           run_install: false
