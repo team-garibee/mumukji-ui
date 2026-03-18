@@ -1,5 +1,6 @@
 {
   "name": "@mumukji/icons",
+  "type": "module",
   "version": "0.0.0",
   "description": "React icon components for Mumukji design system.",
   "private": false,
@@ -40,7 +41,8 @@
   "scripts": {
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
+    "generate:icons": "node scripts/generateIcons.js",
+    "build": "pnpm generate:icons && tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
