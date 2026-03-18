@@ -1,1 +1,1 @@
-export {};
+export { IconArrowRight } from './react/IconArrowRight';
