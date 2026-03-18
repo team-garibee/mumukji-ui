@@ -53,12 +53,16 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-prettier": "^8.1.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "rollup": "^4.59.0",
-    "rollup-plugin-dts": "^6.3.0"
+    "rollup-plugin-dts": "^6.3.0",
+    "svgo": "^4.0.1"
   },
   "dependencies": {
     "tslib": "^2.8.1"
