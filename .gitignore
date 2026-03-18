@@ -36,3 +36,6 @@ coverage
 *.log
 *storybook.log
 storybook-static
+
+# icons-package
+packages/icons/src/react/*
