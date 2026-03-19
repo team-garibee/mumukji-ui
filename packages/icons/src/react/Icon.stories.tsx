@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconArrowRight } from '@mumukji/icons';
+import { IconArrowRight } from './IconArrowRight';
 
 const meta: Meta<typeof IconArrowRight> = {
   title: 'Iconography',
