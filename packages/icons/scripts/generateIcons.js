@@ -28,21 +28,21 @@ const toPascalCase = (str) => {
 
 /** 파일명 생성 유틸 */
 const getIconNames = (file, category) => {
-  const isSpecial = category === COLOR_ICON_CATEGORY;
+  const isFood = category === COLOR_ICON_CATEGORY;
 
   const baseName = file.replace('icon-', '').replace('.svg', '');
-  const distSvgName = isSpecial ? `food-${baseName}.svg` : `${baseName}.svg`;
-  const componentName = `Icon${toPascalCase(isSpecial ? `food-${baseName}` : baseName)}`;
+  const distSvgName = isFood ? `food-${baseName}.svg` : `${baseName}.svg`;
+  const componentName = `Icon${toPascalCase(isFood ? `food-${baseName}` : baseName)}`;
 
   return {
-    isSpecial,
+    isFood,
     distSvgName,
     componentName,
   };
 };
 
 /** SVGO 공용 설정 */
-const getSvgoConfig = (isSpecial) => ({
+const getSvgoConfig = (isFood) => ({
   plugins: [
     {
       name: 'preset-default',
@@ -54,7 +54,7 @@ const getSvgoConfig = (isSpecial) => ({
         },
       },
     },
-    ...(isSpecial
+    ...(isFood
       ? []
       : [{ name: 'convertColors', params: { currentColor: true } }]),
     'removeDimensions',
@@ -63,8 +63,8 @@ const getSvgoConfig = (isSpecial) => ({
 
 /** 아이콘 변환 템플릿 */
 const iconTemplate = (variables, { tpl }) => {
-  const isSpecial = variables.componentName.includes(COLOR_ICON_CATEGORY);
-  const defaultSize = isSpecial ? 48 : 24;
+  const isFood = variables.componentName.includes(COLOR_ICON_CATEGORY);
+  const defaultSize = isFood ? 48 : 24;
   const sizeAssignment = `size = ${defaultSize}`;
 
   return tpl`
@@ -130,7 +130,7 @@ const generateIcons = async () => {
         const filePath = path.join(categoryPath, file);
         const svgCode = await fs.readFile(filePath, 'utf8');
 
-        const { isSpecial, distSvgName, componentName } = getIconNames(
+        const { isFood, distSvgName, componentName } = getIconNames(
           file,
           category,
         );
@@ -138,7 +138,7 @@ const generateIcons = async () => {
         // 최적화된 SVG dist에 저장
         const { data: optimizedSvg } = optimize(svgCode, {
           path: filePath,
-          ...getSvgoConfig(isSpecial),
+          ...getSvgoConfig(isFood),
         });
         await fs.writeFile(
           path.join(PATHS.DIST_SVG_DIR, distSvgName),
