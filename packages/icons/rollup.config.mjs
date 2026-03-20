@@ -14,6 +14,9 @@ export default [
         sourcemap: true,
         preserveModules: true,
         preserveModulesRoot: 'src',
+        entryFileNames: (chunkInfo) => {
+          return chunkInfo.name.replace('react/', '') + '.js';
+        },
       },
       {
         dir: 'dist/cjs',
@@ -21,6 +24,8 @@ export default [
         sourcemap: true,
         preserveModules: true,
         preserveModulesRoot: 'src',
+        entryFileNames: (chunkInfo) =>
+          chunkInfo.name.replace('react/', '') + '.js',
       },
     ],
     plugins: [
