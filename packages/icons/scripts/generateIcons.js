@@ -15,6 +15,7 @@ const PATHS = {
   REACT_DIR: path.resolve(__dirname, '../src/react'),
   INDEX_FILE: path.resolve(__dirname, '../src/index.ts'),
   DIST_SVG_DIR: path.resolve(__dirname, '../dist/svg'),
+  README_FILE: path.resolve(__dirname, '../README.md'),
 };
 
 const COLOR_ICON_CATEGORY = 'food';
@@ -103,6 +104,54 @@ const transformReact = async (svgCode, componentName) => {
   );
 };
 
+/** README 아이콘 목록 섹션 업데이트 */
+const updateReadme = async (iconRows) => {
+  const readme = await fs.readFile(PATHS.README_FILE, 'utf8');
+
+  const basicRows = iconRows.filter(
+    ({ category }) => category !== COLOR_ICON_CATEGORY,
+  );
+  const foodRows = iconRows.filter(
+    ({ category }) => category === COLOR_ICON_CATEGORY,
+  );
+
+  const buildTable = (rows) => {
+    if (rows.length === 0) {
+      return '_아직 추가된 아이콘이 없어요_';
+    }
+    return [
+      '| Preview | Component | SVG |',
+      '| :---: | :---: | :---: |',
+      ...rows.map(
+        ({ svgPath, componentName, distSvgName }) =>
+          `| <img src="${svgPath}" width="24" /> | \`${componentName}\` | \`${distSvgName}\` |`,
+      ),
+    ].join('\n');
+  };
+
+  const newSection = [
+    '## 아이콘 목록',
+    '',
+    '### 일반 아이콘',
+    '',
+    buildTable(basicRows),
+    '',
+    '### 음식 아이콘',
+    '',
+    buildTable(foodRows),
+    '',
+  ].join('\n');
+
+  const START_MARKER = '## 아이콘 목록';
+  const startIdx = readme.indexOf(START_MARKER);
+  const endIdx = readme.indexOf('\n## ', startIdx + START_MARKER.length);
+
+  const before = readme.slice(0, startIdx);
+  const after = endIdx !== -1 ? readme.slice(endIdx) : '';
+
+  await fs.writeFile(PATHS.README_FILE, before + newSection + after, 'utf-8');
+};
+
 /** 메인 실행 함수 */
 const generateIcons = async () => {
   try {
@@ -111,7 +160,8 @@ const generateIcons = async () => {
       fs.mkdir(PATHS.DIST_SVG_DIR, { recursive: true }),
     ]);
     const categories = await fs.readdir(PATHS.SVG_DIR);
-    let indexContent = [];
+    const indexContent = [];
+    const iconRows = [];
 
     for (const category of categories) {
       const categoryPath = path.join(PATHS.SVG_DIR, category);
@@ -155,11 +205,22 @@ const generateIcons = async () => {
         indexContent.push(
           `export { ${componentName} } from './react/${componentName}';`,
         );
+
+        iconRows.push({
+          category,
+          svgPath: `./src/svg/${category}/${file}`,
+          componentName,
+          distSvgName,
+        });
       }
     }
 
     indexContent.sort();
-    await fs.writeFile(PATHS.INDEX_FILE, indexContent.join('\n') + '\n');
+    await Promise.all([
+      fs.writeFile(PATHS.INDEX_FILE, indexContent.join('\n') + '\n'),
+      updateReadme(iconRows),
+    ]);
+
     console.log('✅ 모든 아이콘이 성공적으로 생성되었습니다!');
   } catch (error) {
     console.error('❌ 아이콘 생성 중 에러 발생:', error);
