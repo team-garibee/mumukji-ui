@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "dev",
   "updateInternalDependencies": "patch",
-  "ignore": ["@mumukji/storybook"]
+  "ignore": ["@mumukji/storybook", "@mumukji/ui", "@mumukji/tokens"]
 }
