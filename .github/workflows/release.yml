@@ -7,6 +7,7 @@ on:
     paths:
       - 'packages/**'
       - '.changeset/**'
+  workflow_dispatch:
 
 jobs:
   release:
