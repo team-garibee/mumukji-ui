@@ -1,7 +1,7 @@
 {
   "name": "@mumukji/icons",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React icon components for Mumukji design system.",
   "private": false,
   "author": "team-garibee",
