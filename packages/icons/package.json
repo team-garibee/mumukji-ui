@@ -1,5 +1,6 @@
 {
   "name": "@mumukji/icons",
+  "type": "module",
   "version": "0.0.0",
   "description": "React icon components for Mumukji design system.",
   "private": false,
@@ -23,6 +24,7 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./*.svg": "./dist/svg/*.svg",
     "./*": {
       "import": "./dist/esm/*.js",
       "require": "./dist/cjs/*.js",
@@ -39,7 +41,8 @@
   "scripts": {
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
+    "generate:icons": "node scripts/generateIcons.js",
+    "build": "pnpm generate:icons && tsc -p tsconfig.build.json && rollup -c && rm -rf dist/types",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
@@ -52,12 +55,17 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@storybook/react-vite": "^10.2.13",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-prettier": "^8.1.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "rollup": "^4.59.0",
-    "rollup-plugin-dts": "^6.3.0"
+    "rollup-plugin-dts": "^6.3.0",
+    "svgo": "^4.0.1"
   },
   "dependencies": {
     "tslib": "^2.8.1"

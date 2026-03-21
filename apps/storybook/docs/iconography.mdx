@@ -1,0 +1,74 @@
+import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
+import { IconArrowRight } from '@mumukji/icons';
+
+<Meta title='Iconography' />
+
+# Iconography
+
+- 머먹지 서비스의 브랜드 아이덴티티를 담은 아이콘 시스템입니다.
+- 모든 아이콘은 고정된 `ViewBox`를 가지며, `React 컴포넌트`와 원본 `SVG` 파일 두 가지 형태로 제공됩니다.
+
+<br />
+
+## Usage
+
+패키지를 설치한 후 다음과 같이 사용할 수 있습니다.
+
+```zsh
+# npm 사용 시
+npm install @mumukji/icons
+
+# pnpm 사용 시
+pnpm add @mumukji/icons
+```
+
+### 1. React Component (권장)
+
+색상(`currentColor`)과 크기(`size`) 조절이 자유로운 컴포넌트 방식입니다.
+
+```TypeScript
+import { IconArrowRight } from '@mumukji/icons';
+
+<IconArrowRight size={24} color='gray' />
+```
+
+### 2. SVG Path
+
+이미지 태그나 CSS 배경으로 원본 파일이 필요할 때 사용합니다.
+
+```TypeScript
+import ArrowSvg from '@mumukji/icons/arrow-right.svg';
+
+<img src={ArrowSvg} alt='arrow' />
+```
+
+<br />
+
+## Icons List
+
+### Basic Icons
+
+- 일반적인 UI 흐름에 사용되는 아이콘입니다. (기본 24px)
+
+{/* TODO: 리액트 컴포넌트명 복사 컴포넌트 추가 */}
+
+<IconGallery>
+  <IconItem name='arrow-right'>
+    <IconArrowRight />
+  </IconItem>
+</IconGallery>
+
+<br />
+
+### Food Icons
+
+- 음식 카테고리에 특화된 컬러 아이콘입니다. (기본 48px)
+- 업데이트 예정
+
+{/* TODO: 푸드 아이콘 업데이트 */}
+
+<IconGallery>
+  <IconItem name='arrow-right'>
+    <IconArrowRight />
+  </IconItem>
+</IconGallery>
