@@ -2,7 +2,7 @@
   "name": "@mumukji/ui",
   "version": "0.0.0",
   "description": "A React-based design system for Mumukji. Includes reusable UI components built with accessibility and scalability in mind.",
-  "private": false,
+  "private": true,
   "author": "team-garibee",
   "license": "MIT",
   "repository": {
