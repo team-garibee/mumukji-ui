@@ -162,6 +162,8 @@ const generateIcons = async () => {
     const categories = await fs.readdir(PATHS.SVG_DIR);
     const indexContent = [];
     const iconRows = [];
+    const GITHUB_RAW_BASE =
+      'https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons';
 
     for (const category of categories) {
       const categoryPath = path.join(PATHS.SVG_DIR, category);
@@ -208,7 +210,7 @@ const generateIcons = async () => {
 
         iconRows.push({
           category,
-          svgPath: `./src/svg/${category}/${file}`,
+          svgPath: `${GITHUB_RAW_BASE}/src/svg/${category}/${file}`,
           componentName,
           distSvgName,
         });
