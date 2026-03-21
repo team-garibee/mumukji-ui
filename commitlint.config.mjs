@@ -24,6 +24,7 @@ export default {
         '📝 Docs', // 문서 관련 수정
         '🚚 Rename', // 파일/디렉토리명 변경
         '🔥 Remove', // 코드/파일 삭제
+        '🚀 Release', // 릴리즈
       ],
     ],
   },
