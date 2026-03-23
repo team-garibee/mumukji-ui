@@ -72,7 +72,17 @@ import arrowRight from '@mumukji/icons/IconArrowRight';
 
 ### 음식 아이콘
 
-_아직 추가된 아이콘이 없어요_
+|                                                                Preview                                                                |     Component      |         SVG         |
+| :-----------------------------------------------------------------------------------------------------------------------------------: | :----------------: | :-----------------: |
+|  <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-asian.svg" width="24" />   |  `IconFoodAsian`   |  `food-asian.svg`   |
+|  <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-bunsik.svg" width="24" />  |  `IconFoodBunsik`  |  `food-bunsik.svg`  |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-chicken.svg" width="24" />  | `IconFoodChicken`  | `food-chicken.svg`  |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-chinese.svg" width="24" />  | `IconFoodChinese`  | `food-chinese.svg`  |
+|   <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-diet.svg" width="24" />   |   `IconFoodDiet`   |   `food-diet.svg`   |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-fastfood.svg" width="24" /> | `IconFoodFastfood` | `food-fastfood.svg` |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-japanese.svg" width="24" /> | `IconFoodJapanese` | `food-japanese.svg` |
+|  <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-korean.svg" width="24" />  |  `IconFoodKorean`  |  `food-korean.svg`  |
+| <img src="https://raw.githubusercontent.com/team-garibee/mumukji-ui/main/packages/icons/src/svg/food/icon-western.svg" width="24" />  | `IconFoodWestern`  | `food-western.svg`  |
 
 ## License
 
