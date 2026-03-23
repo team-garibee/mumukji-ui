@@ -1,1 +1,10 @@
 export { IconArrowRight } from './react/IconArrowRight';
+export { IconFoodAsian } from './react/IconFoodAsian';
+export { IconFoodBunsik } from './react/IconFoodBunsik';
+export { IconFoodChicken } from './react/IconFoodChicken';
+export { IconFoodChinese } from './react/IconFoodChinese';
+export { IconFoodDiet } from './react/IconFoodDiet';
+export { IconFoodFastfood } from './react/IconFoodFastfood';
+export { IconFoodJapanese } from './react/IconFoodJapanese';
+export { IconFoodKorean } from './react/IconFoodKorean';
+export { IconFoodWestern } from './react/IconFoodWestern';
