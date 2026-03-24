@@ -12,6 +12,7 @@ import {
 
 const meta: Meta = {
   title: 'Tokens/Primitive',
+  tags: ['!autodocs'],
 };
 
 export default meta;
