@@ -59,7 +59,10 @@ const generateTokens = async () => {
     }
 
     const content = lines.join('\n\n') + '\n';
-    await fs.writeFile(path.join(PATHS.PRIMITIVES_DIR, 'primitive.ts'), content);
+    await fs.writeFile(
+      path.join(PATHS.PRIMITIVES_DIR, 'primitive.ts'),
+      content,
+    );
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
     console.log(`✅ ${tokenName} 토큰이 성공적으로 생성되었습니다!`);
