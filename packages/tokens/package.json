@@ -31,9 +31,10 @@
     "mumukji"
   ],
   "scripts": {
+    "generate:tokens": "node scripts/generateTokens.js",
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c",
+    "build": "pnpm generate:tokens && tsc -p tsconfig.build.json && rollup -c",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
