@@ -30,8 +30,12 @@ const parseValue = (value) => {
  * 중첩된 객체는 재귀로 처리
  */
 const extractValues = (obj) => {
-  if (typeof obj !== 'object' || obj === null) { return obj; }
-  if ('value' in obj && 'type' in obj) { return parseValue(obj.value); }
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+  if ('value' in obj && 'type' in obj) {
+    return parseValue(obj.value);
+  }
 
   const result = {};
   for (const [key, val] of Object.entries(obj)) {
@@ -50,7 +54,9 @@ const generateTokens = async () => {
     const lines = [];
 
     for (const [key, value] of Object.entries(json)) {
-      if (SKIP_KEYS.includes(key)) { continue; }
+      if (SKIP_KEYS.includes(key)) {
+        continue;
+      }
 
       const exportName = toCamelCase(key);
       const extracted = extractValues(value);
