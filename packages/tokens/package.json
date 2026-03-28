@@ -23,7 +23,7 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./scss": "./dist/scss/primitive.scss"
+    "./css": "./dist/css/primitive.css"
   },
   "keywords": [
     "design-system",
