@@ -51,6 +51,32 @@ export const Color: StoryObj = {
           </div>
         </div>
       ))}
+      <div>
+        <p style={{ marginBottom: 8, fontWeight: 600 }}>Opacity</p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          {Object.entries(opacity).map(([key, value]) => (
+            <div
+              key={key}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 4,
+              }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 8,
+                  background: '#F9603E',
+                  opacity: value as number,
+                }}
+              />
+              <span style={{ fontSize: 11 }}>{key}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   ),
 };
@@ -80,29 +106,29 @@ export const Spacing: StoryObj = {
 
 export const Typography: StoryObj = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      {Object.entries(fontSize).map(([key, value]) => (
-        <div
-          key={key}
-          style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-          <span style={{ width: 32, fontSize: 12, color: '#888' }}>{key}</span>
-          <span
-            style={{
-              fontSize: value as number,
-              fontFamily: fontFamily.default as string,
-            }}>
-            머먹지 디자인 시스템
-          </span>
-          <span style={{ fontSize: 11, color: '#888' }}>{value}px</span>
-        </div>
-      ))}
-    </div>
-  ),
-};
-
-export const Others: StoryObj = {
-  render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+      <div>
+        <p style={{ marginBottom: 8, fontWeight: 600 }}>Font Size</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {Object.entries(fontSize).map(([key, value]) => (
+            <div
+              key={key}
+              style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+              <span style={{ width: 32, fontSize: 12, color: '#888' }}>
+                {key}
+              </span>
+              <span
+                style={{
+                  fontSize: value as number,
+                  fontFamily: fontFamily.default as string,
+                }}>
+                머먹지 디자인 시스템
+              </span>
+              <span style={{ fontSize: 11, color: '#888' }}>{value}px</span>
+            </div>
+          ))}
+        </div>
+      </div>
       <div>
         <p style={{ marginBottom: 8, fontWeight: 600 }}>Font Weight</p>
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
@@ -111,6 +137,18 @@ export const Others: StoryObj = {
               key={key}
               style={{ fontWeight: value as number, fontSize: 16 }}>
               {key} ({value})
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontWeight: 600 }}>Font Family</p>
+        <div style={{ display: 'flex', gap: 16 }}>
+          {Object.entries(fontFamily).map(([key, value]) => (
+            <span
+              key={key}
+              style={{ fontFamily: value as string, fontSize: 16 }}>
+              {key}: {value as string}
             </span>
           ))}
         </div>
@@ -137,62 +175,41 @@ export const Others: StoryObj = {
           ))}
         </div>
       </div>
-      <div>
-        <p style={{ marginBottom: 8, fontWeight: 600 }}>Opacity</p>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {Object.entries(opacity).map(([key, value]) => (
+    </div>
+  ),
+};
+
+export const Radius: StoryObj = {
+  render: () => (
+    <div>
+      <p style={{ marginBottom: 8, fontWeight: 600 }}>Radius</p>
+      <div
+        style={{
+          display: 'flex',
+          gap: 16,
+          flexWrap: 'wrap',
+          alignItems: 'center',
+        }}>
+        {Object.entries(radius).map(([key, value]) => (
+          <div
+            key={key}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 4,
+            }}>
             <div
-              key={key}
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 4,
-              }}>
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: 8,
-                  background: '#F9603E',
-                  opacity: value as number,
-                }}
-              />
-              <span style={{ fontSize: 11 }}>{key}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div>
-        <p style={{ marginBottom: 8, fontWeight: 600 }}>Border Radius</p>
-        <div
-          style={{
-            display: 'flex',
-            gap: 16,
-            flexWrap: 'wrap',
-            alignItems: 'center',
-          }}>
-          {Object.entries(radius).map(([key, value]) => (
-            <div
-              key={key}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 4,
-              }}>
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  background: '#F9603E',
-                  borderRadius: value as number,
-                }}
-              />
-              <span style={{ fontSize: 11 }}>{key}</span>
-            </div>
-          ))}
-        </div>
+                width: 48,
+                height: 48,
+                background: '#F9603E',
+                borderRadius: value as number,
+              }}
+            />
+            <span style={{ fontSize: 11 }}>{key}</span>
+          </div>
+        ))}
       </div>
     </div>
   ),
