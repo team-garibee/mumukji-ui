@@ -51,6 +51,9 @@ const extractValues = (obj) => {
 /** spacing, radius, font-size는 px 단위 적용 */
 const CATEGORIES_WITH_PX = new Set(['spacing', 'radius', 'font-size']);
 
+/** font-family는 문자열로 */
+const CATEGORIES_WITH_QUOTES = new Set(['font-family']);
+
 /**
  * 추출된 토큰 객체를 CSS 커스텀 프로퍼티 목록으로 변환
  * { primary: { 50: '#fff' } } → ['--color-primary-50: #fff']
@@ -64,7 +67,12 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
     } else {
       const needsPx =
         CATEGORIES_WITH_PX.has(rootCategory) && typeof value === 'number';
-      const cssValue = needsPx ? `${value}px` : String(value);
+      const needsQuotes = CATEGORIES_WITH_QUOTES.has(rootCategory);
+      const cssValue = needsPx
+        ? `${value}px`
+        : needsQuotes
+          ? `'${String(value)}'`
+          : String(value);
       vars.push(`  ${varName}: ${cssValue};`);
     }
   }
