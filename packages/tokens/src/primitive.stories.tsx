@@ -91,7 +91,7 @@ export const Typography: StoryObj = {
               fontSize: value as number,
               fontFamily: fontFamily.default as string,
             }}>
-            무묵지 디자인 시스템
+            머먹지 디자인 시스템
           </span>
           <span style={{ fontSize: 11, color: '#888' }}>{value}px</span>
         </div>
@@ -130,7 +130,7 @@ export const Others: StoryObj = {
               <span style={{ fontSize: 12, color: '#888', display: 'block' }}>
                 {key} ({value})
               </span>
-              무묵지
+              머먹지
               <br />
               디자인 시스템
             </div>
