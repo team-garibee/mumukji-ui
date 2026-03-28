@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 const PATHS = {
   PRIMITIVE_JSON: path.resolve(__dirname, '../src/primitive.json'),
   PRIMITIVES_DIR: path.resolve(__dirname, '../src/primitives'),
+  SCSS_DIR: path.resolve(__dirname, '../dist/scss'),
 };
 
 const SKIP_KEYS = ['$themes', '$metadata'];
@@ -92,6 +93,7 @@ const flattenToCssVars = (obj, prefix, rootCategory) => {
 const generateTokens = async () => {
   try {
     await fs.mkdir(PATHS.PRIMITIVES_DIR, { recursive: true });
+    await fs.mkdir(PATHS.SCSS_DIR, { recursive: true });
 
     const raw = await fs.readFile(PATHS.PRIMITIVE_JSON, 'utf8');
     const json = JSON.parse(raw);
@@ -125,10 +127,10 @@ const generateTokens = async () => {
       tsContent,
     );
 
-    // primitive.scss 저장
+    // dist/scss/ 경로로 primitive.scss 저장
     const scssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
     await fs.writeFile(
-      path.join(PATHS.PRIMITIVES_DIR, 'primitive.scss'),
+      path.join(PATHS.SCSS_DIR, 'primitive.scss'),
       scssContent,
     );
 
