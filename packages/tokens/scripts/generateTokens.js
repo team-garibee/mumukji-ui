@@ -133,7 +133,7 @@ const generateTokens = async () => {
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
     console.log(
-      `✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + SCSS)`,
+      `✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + CSS)`,
     );
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
