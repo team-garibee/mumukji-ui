@@ -22,7 +22,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./scss": "./dist/scss/primitive.scss"
   },
   "keywords": [
     "design-system",
@@ -34,7 +35,7 @@
     "generate:tokens": "node scripts/generateTokens.js",
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "pnpm generate:tokens && tsc -p tsconfig.build.json && rollup -c",
+    "build": "pnpm generate:tokens && tsc -p tsconfig.build.json && rollup -c && mkdir -p dist/scss && cp src/primitives/primitive.scss dist/scss/primitive.scss",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."

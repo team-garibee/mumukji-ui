@@ -14,6 +14,10 @@ const PATHS = {
 
 const SKIP_KEYS = ['$themes', '$metadata'];
 
+/** camelCase → kebab-case 변환 */
+const toKebabCase = (str) =>
+  str.replace(/([A-Z])/g, (char) => `-${char.toLowerCase()}`);
+
 /** 'font-size' 같은 형식을 'fontSize'로 변환 */
 const toCamelCase = (str) =>
   str.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
@@ -44,6 +48,29 @@ const extractValues = (obj) => {
   return result;
 };
 
+/** spacing, radius, font-size는 px 단위 적용 */
+const CATEGORIES_WITH_PX = new Set(['spacing', 'radius', 'font-size']);
+
+/**
+ * 추출된 토큰 객체를 CSS 커스텀 프로퍼티 목록으로 변환
+ * { primary: { 50: '#fff' } } → ['--color-primary-50: #fff']
+ */
+const flattenToCssVars = (obj, prefix, rootCategory) => {
+  const vars = [];
+  for (const [key, value] of Object.entries(obj)) {
+    const varName = `${prefix}-${toKebabCase(String(key))}`;
+    if (typeof value === 'object' && value !== null) {
+      vars.push(...flattenToCssVars(value, varName, rootCategory));
+    } else {
+      const needsPx =
+        CATEGORIES_WITH_PX.has(rootCategory) && typeof value === 'number';
+      const cssValue = needsPx ? `${value}px` : String(value);
+      vars.push(`  ${varName}: ${cssValue};`);
+    }
+  }
+  return vars;
+};
+
 const generateTokens = async () => {
   try {
     await fs.mkdir(PATHS.PRIMITIVES_DIR, { recursive: true });
@@ -51,7 +78,8 @@ const generateTokens = async () => {
     const raw = await fs.readFile(PATHS.PRIMITIVE_JSON, 'utf8');
     const json = JSON.parse(raw);
 
-    const lines = [];
+    const tsLines = [];
+    const cssVars = [];
 
     for (const [key, value] of Object.entries(json)) {
       if (SKIP_KEYS.includes(key)) {
@@ -59,20 +87,37 @@ const generateTokens = async () => {
       }
 
       const exportName = toCamelCase(key);
+      const rootCategory = toKebabCase(exportName);
       const extracted = extractValues(value);
-      const serialized = JSON.stringify(extracted, null, 2);
 
-      lines.push(`export const ${exportName} = ${serialized} as const;`);
+      // TS 상수 생성
+      const serialized = JSON.stringify(extracted, null, 2);
+      tsLines.push(`export const ${exportName} = ${serialized} as const;`);
+
+      // CSS 변수 생성
+      cssVars.push(
+        ...flattenToCssVars(extracted, `--${rootCategory}`, rootCategory),
+      );
     }
 
-    const content = lines.join('\n\n') + '\n';
+    // primitive.ts 저장
+    const tsContent = tsLines.join('\n\n') + '\n';
     await fs.writeFile(
       path.join(PATHS.PRIMITIVES_DIR, 'primitive.ts'),
-      content,
+      tsContent,
+    );
+
+    // primitive.scss 저장
+    const scssContent = `:root {\n${cssVars.join('\n')}\n}\n`;
+    await fs.writeFile(
+      path.join(PATHS.PRIMITIVES_DIR, 'primitive.scss'),
+      scssContent,
     );
 
     const tokenName = path.basename(PATHS.PRIMITIVE_JSON, '.json');
-    console.log(`✅ ${tokenName} 토큰이 성공적으로 생성되었습니다!`);
+    console.log(
+      `✅ ${tokenName} 토큰이 성공적으로 생성되었습니다! (TS + SCSS)`,
+    );
   } catch (error) {
     console.error('❌ 토큰 생성 중 에러 발생:', error);
     process.exit(1);
