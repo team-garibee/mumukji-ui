@@ -22,7 +22,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./css": "./dist/css/primitive.css"
   },
   "keywords": [
     "design-system",
@@ -31,9 +32,10 @@
     "mumukji"
   ],
   "scripts": {
+    "generate:tokens": "node scripts/generateTokens.js",
     "watch": "rollup -cw",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json && rollup -c",
+    "build": "pnpm generate:tokens && tsc -p tsconfig.build.json && rollup -c",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
@@ -42,6 +44,11 @@
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@storybook/react-vite": "^10.2.13",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "rollup": "^4.59.0"
   },
   "dependencies": {
